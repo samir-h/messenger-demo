@@ -1,20 +1,31 @@
 <div class="container">
   <mat-selection-list #chats [multiple]="false">
-    <ng-container *ngFor="let chat of conversations; trackBy: conversationsTrackByFn">
-      <mat-list-option  [value]="chat.id" (click)="selectChat(chat.id)">
+    <ng-container
+      *ngFor="let chat of conversations; trackBy: conversationsTrackByFn"
+    >
+      <mat-list-option
+        [value]="chat.id"
+        (click)="selectChat(chat.id)"
+        [selected]="chat.id === selectedConversationId"
+      >
         <div class="chat-info-container">
           <app-avatar [avatarUrl]="chat.participantInfo.avatar"></app-avatar>
           <div class="chat-info">
-            <span class="name">{{chat.participantInfo.name}}</span>
+            <span class="name">{{ chat.participantInfo.name }}</span>
             <!-- here we display the last message in the chat info-->
-            <span class="last-message">{{chat.messages[chat.messages.length - 1].message}}</span>
+            <span class="last-message">{{
+              chat.messages[chat.messages.length - 1]?.message
+            }}</span>
           </div>
-          <div class="time">{{chat.messages[chat.messages.length -1].sentDateTime | date: "shortTime"}}</div>
+          <div class="time">
+            {{
+              chat.messages[chat.messages.length - 1]?.sentDateTime
+                | date: "shortTime"
+            }}
+          </div>
         </div>
       </mat-list-option>
       <mat-divider></mat-divider>
     </ng-container>
-
   </mat-selection-list>
-
 </div>

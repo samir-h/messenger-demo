@@ -1,18 +1,55 @@
 <div class="container">
   <div class="left-side-panel">
-    <div class="header">
-      <mat-toolbar color="primary">
-        <app-avatar [avatarUrl]="personalData.avatar"></app-avatar>
-        <div class="name">{{personalData.name}}</div>
-        <div class="actions">
-          <button mat-icon-button class="example-icon" matTooltip="New conversation" aria-label="Example icon-button with share icon">
-            <mat-icon>add_comment</mat-icon>
+    <ng-container *ngIf="!showUserList">
+      <div class="header">
+        <mat-toolbar color="primary">
+          <app-avatar [avatarUrl]="personalData.avatar"></app-avatar>
+          <div class="name">{{ personalData.name }}</div>
+          <div class="actions">
+            <button
+              mat-icon-button
+              class="example-icon"
+              matTooltip="New conversation"
+              aria-label="Example icon-button with share icon"
+              (click)="setShowUsersList(true)"
+            >
+              <mat-icon>add_comment</mat-icon>
+            </button>
+          </div>
+        </mat-toolbar>
+      </div>
+      <app-chat-list
+        [conversations]="conversations"
+        [selectedConversationId]="selectedConversationId"
+        (conversationSelected)="onConversationSelected($event)"
+      ></app-chat-list>
+    </ng-container>
+
+    <ng-container *ngIf="showUserList">
+      <div class="header">
+        <mat-toolbar color="primary">
+          <button
+            mat-icon-button
+            class="example-icon"
+            matTooltip="New conversation"
+            aria-label="Example icon-button with share icon"
+            (click)="setShowUsersList(false)"
+          >
+            <mat-icon>arrow_back</mat-icon>
           </button>
-        </div>
-      </mat-toolbar>
-    </div>
-    <app-chat-list [conversations]="conversations" (conversationSelected)="onConversationSelected($event)"></app-chat-list>
+          <div class="name">Users</div>
+        </mat-toolbar>
+      </div>
+      <app-users-list
+        [users]="users"
+        (userSelected)="startNewConversation($event)"
+      ></app-users-list>
+    </ng-container>
   </div>
 
-  <app-chat [messages]="messages" [loggedInUserId]="personalData.id" (send)="onMessageSend($event)"></app-chat>
+  <app-chat
+    [messages]="messages"
+    [loggedInUserId]="personalData.id"
+    (send)="onMessageSend($event)"
+  ></app-chat>
 </div>

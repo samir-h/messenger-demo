@@ -1,5 +1,5 @@
-import {Participant} from './participant.interface';
-import {Message} from './message.interface';
+import { Participant } from './participant.interface';
+import { Message } from './message.interface';
 
 export interface Conversation {
   id: number;

@@ -1,0 +1,18 @@
+<mat-selection-list [multiple]="false">
+  <mat-list-option
+    *ngFor="let user of users"
+    [value]="user"
+    (click)="onUserSelect(user)"
+  >
+    <div class="user-info">
+      <app-avatar [avatarUrl]="user.avatar"></app-avatar>
+      <span class="name">{{ user.name }}</span>
+      <div
+        class="online-indicator"
+        *ngIf="user.isOnline"
+        matTooltip="Online"
+      ></div>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-list-option>
+</mat-selection-list>

@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  mat-selection-list {
+    padding-top: 0;
+
+    mat-list-option {
+      height: auto;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+
+      app-avatar {
+        height: 40px;
+        width: 40px;
+        margin-right: 10px;
+      }
+
+      .name {
+        flex: 1 1 auto;
+      }
+
+      .online-indicator {
+        flex: 0 0 16px;
+        display: flex;
+        height: 16px;
+        background: green;
+        border-radius: 50%;
+      }
+    }
+  }
+}
