@@ -1,8 +1,13 @@
 import {NgModule} from '@angular/core';
+import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
-  imports: [],
-  exports: []
+  imports: [MatListModule, MatToolbarModule, MatButtonModule, MatIconModule, MatTooltipModule],
+  exports: [MatListModule, MatToolbarModule, MatButtonModule, MatIconModule, MatTooltipModule]
 })
-// NOTE: We will use this module to import only the material components we need.
+// NOTE: We will use this module to import only the material modules we need.
 export class MaterialModule {}
