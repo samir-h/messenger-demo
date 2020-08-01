@@ -11,9 +11,24 @@
     </mat-toolbar>
   </div>
   <div class="messages">
+    <div class="no-messages-placeholder" *ngIf="!messages">
+      Please select an existing conversation or start a new one.
+    </div>
+    <ng-container *ngIf="messages">
+      <div [ngClass]="{'message-wrapper': true, 'my-message': message.creatorId === loggedInUserId, 'other-user-message': message.creatorId !== loggedInUserId}" *ngFor="let message of messages; trackBy: messageTrackByFn">
+        <div class="bubble">
+          {{message.message}}
+        </div>
+      </div>
+    </ng-container>
 
   </div>
-  <div class="compose-message">
-    <input matInput>
+  <div class="compose-message" *ngIf="messages">
+    <mat-form-field appearance="outline">
+      <input matInput #inputField placeholder="Type message here..." (keypress)="onKeyPres($event)">
+      <button mat-icon-button matSuffix color="primary" (click)="onSendPress()">
+        <mat-icon >send</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
 </div>

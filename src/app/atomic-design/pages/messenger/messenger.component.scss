@@ -7,12 +7,30 @@
   .container {
     height: 100%;
     width: 100%;
-
     display: flex;
 
-    app-chat-list {
+    .left-side-panel {
+      display: flex;
+      flex-direction: column;
       flex: 1 1 35%;
       border-right: 1px solid lightgray;
+
+      .header {
+        //height: 65px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        app-avatar {
+          height: 40px;
+          width: 40px;
+        }
+
+        .name {
+          flex: 1 1 auto;
+          margin-left: 10px;
+        }
+      }
     }
 
     app-chat {

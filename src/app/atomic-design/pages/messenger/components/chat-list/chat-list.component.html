@@ -1,29 +1,15 @@
 <div class="container">
-
-  <div class="header">
-    <mat-toolbar color="primary">
-      <app-avatar></app-avatar>
-      <div class="name">John Doe</div>
-      <div class="actions">
-        <button mat-icon-button class="example-icon" matTooltip="New conversation" aria-label="Example icon-button with share icon">
-          <mat-icon>add_comment</mat-icon>
-        </button>
-      </div>
-    </mat-toolbar>
-  </div>
-
   <mat-selection-list #chats [multiple]="false">
-    <ng-container *ngFor="let shoe of typesOfShoes">
-      <mat-list-option  [value]="shoe">
+    <ng-container *ngFor="let chat of conversations; trackBy: conversationsTrackByFn">
+      <mat-list-option  [value]="chat.id" (click)="selectChat(chat.id)">
         <div class="chat-info-container">
-          <app-avatar></app-avatar>
+          <app-avatar [avatarUrl]="chat.participantInfo.avatar"></app-avatar>
           <div class="chat-info">
-            <span class="name">user name</span>
-            <span class="last-message">last message</span>
+            <span class="name">{{chat.participantInfo.name}}</span>
+            <!-- here we display the last message in the chat info-->
+            <span class="last-message">{{chat.messages[chat.messages.length - 1].message}}</span>
           </div>
-          <div class="time">
-            2:45pm
-          </div>
+          <div class="time">{{chat.messages[chat.messages.length -1].sentDateTime | date: "shortTime"}}</div>
         </div>
       </mat-list-option>
       <mat-divider></mat-divider>

@@ -27,10 +27,56 @@
 
     .messages {
       flex: 1 1 auto;
+      padding: 0 5px;
+      overflow: auto;
+
+      .message-wrapper {
+        display: flex;
+
+        .bubble {
+          padding: 5px 10px;
+          border-radius: 5px;
+          margin: 2px 0;
+          max-width: 60%;
+        }
+
+        &.my-message {
+          justify-content: flex-end;
+
+          .bubble {
+            background: lightblue;
+          }
+        }
+
+        &.other-user-message {
+          .bubble {
+            background: lightpink;
+          }
+        }
+      }
     }
 
+    .no-messages-placeholder {
+      height: 100%;
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .compose-message {
       flex: 0 0 50px;
+
+      mat-form-field {
+        width: 100%;
+
+        // With ng-deep we override the default style of the form-field
+        ::ng-deep.mat-form-field-wrapper {
+          margin: 0;
+          padding: 0;
+          padding-bottom: 1px;
+        }
+
+      }
     }
   }
 
