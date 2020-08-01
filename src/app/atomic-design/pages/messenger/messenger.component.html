@@ -20,7 +20,7 @@
       </div>
       <app-chat-list
         [conversations]="conversations"
-        [selectedConversationId]="selectedConversationId"
+        [selectedConversationId]="selectedConversation?.id"
         (conversationSelected)="onConversationSelected($event)"
       ></app-chat-list>
     </ng-container>
@@ -48,7 +48,8 @@
   </div>
 
   <app-chat
-    [messages]="messages"
+    [messages]="selectedConversation?.messages"
+    [participantInfo]="selectedConversation?.participantInfo"
     [loggedInUserId]="personalData.id"
     (send)="onMessageSend($event)"
   ></app-chat>

@@ -9,6 +9,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { Message } from '../../models/message.interface';
+import {Participant} from '../../models/participant.interface';
 
 @Component({
   selector: 'app-chat',
@@ -19,6 +20,7 @@ import { Message } from '../../models/message.interface';
 export class ChatComponent {
   @Input() messages: Message[] | undefined = undefined;
   @Input() loggedInUserId: number | undefined;
+  @Input() participantInfo: Participant;
   @Output() send = new EventEmitter<{ message: string }>();
   @ViewChild('inputField') inputField: ElementRef;
   constructor() {}

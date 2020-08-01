@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessengerService } from './services/messenger.service';
 import { Conversation } from './models/conversation.interface';
-import { Message } from './models/message.interface';
 import { Participant } from './models/participant.interface';
 import { User } from '../../../shared/models/user.interface';
 
@@ -13,15 +12,12 @@ import { User } from '../../../shared/models/user.interface';
 export class MessengerComponent implements OnInit {
   // INFO: the conversations are of type Observable because in real-life we would wait for the messages to come from backend.
   public conversations: Conversation[];
-  public messages: Message[] | undefined;
+  public selectedConversation: Conversation | undefined;
   public personalData: Participant;
   public users: User[];
 
   // INFO: we will use this variable to show/hide the users list;
   public showUserList = false;
-
-  // NOTE: we use this variable to know which is the current selected conversation
-  private selectedConversationId: number | undefined;
 
   constructor(private messengerService: MessengerService) {
     this.messengerService.conversations$
@@ -29,21 +25,15 @@ export class MessengerComponent implements OnInit {
       .subscribe((data: Conversation[]) => {
         this.conversations = data;
       });
-    this.messengerService.messages$
+    this.messengerService.selectedConversation$
       .asObservable()
-      .subscribe((messages: Message[] | undefined) => {
-        this.messages = messages;
+      .subscribe((conversation: Conversation | undefined) => {
+        this.selectedConversation = conversation;
       });
 
     this.messengerService.users$.asObservable().subscribe((users: User[]) => {
       this.users = users;
     });
-
-    this.messengerService.selectedConversation$
-      .asObservable()
-      .subscribe((conversationId: number | undefined) => {
-        this.selectedConversationId = conversationId;
-      });
 
     this.personalData = messengerService.getPersonalData();
   }
@@ -56,9 +46,9 @@ export class MessengerComponent implements OnInit {
 
   // NOTE: here we send the message to the service.
   public onMessageSend(data: { message: string }): void {
-    if (this.selectedConversationId) {
+    if (this.selectedConversation) {
       this.messengerService.sendMessage(
-        this.selectedConversationId,
+        this.selectedConversation.id,
         data.message
       );
     }
