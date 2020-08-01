@@ -3,56 +3,63 @@
   height: 100%;
   width:  100%;
 
-  app-avatar {
-    height: 40px;
-    width: 40px;
-  }
-
-  .header {
-    height: 65px;
+  .container {
+    height: 100%;
     width: 100%;
-    display: flex;
-    align-items: center;
 
-    .name {
-      flex: 1 1 auto;
-      margin-left: 10px;
-    }
-  }
-
-  mat-selection-list {
-    padding-top: 0;
-
-    mat-list-option {
-      height: auto;
+    app-avatar {
+      height: 40px;
+      width: 40px;
     }
 
-    .chat-info-container {
+    .header {
+      //height: 65px;
+      width: 100%;
       display: flex;
       align-items: center;
-      padding: 10px 0;
 
-      app-avatar {
-        margin-right: 10px;
-      }
-
-      .chat-info {
+      .name {
         flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
+        margin-left: 10px;
+      }
+    }
 
-        .name {
-          font-weight: bold;
-        }
+    mat-selection-list {
+      padding-top: 0;
 
-        .last-message {
-          font-size: 14px;
-        }
+      mat-list-option {
+        height: auto;
       }
 
-      .time {
+      .chat-info-container {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
 
+        app-avatar {
+          margin-right: 10px;
+        }
+
+        .chat-info {
+          flex: 1 1 auto;
+          display: flex;
+          flex-direction: column;
+
+          .name {
+            font-weight: bold;
+          }
+
+          .last-message {
+            font-size: 14px;
+          }
+        }
+
+        .time {
+
+        }
       }
     }
   }
+
+
 }

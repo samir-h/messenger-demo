@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  .container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      .name {
+        flex: 1 1 auto;
+        margin-left: 10px;
+      }
+
+      app-avatar {
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    .messages {
+      flex: 1 1 auto;
+    }
+
+    .compose-message {
+      flex: 0 0 50px;
+    }
+  }
+
+}
